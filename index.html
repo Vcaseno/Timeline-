@@ -25,15 +25,7 @@
             overflow: hidden;
             cursor: pointer; /* Shows screen is clickable */
         }
-        /* Clickable full-screen trigger area */
-        #upload-trigger {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+
         .container {
             text-align: center;
             z-index: 2; /* Keeps clock text above the clickable background */
@@ -75,10 +67,7 @@
 </head>
 <body>
 
-    <!-- This invisible overlay lets you tap anywhere to open your gallery -->
-    <div id="upload-trigger"></div>
-
-    <input type="file" id="gallery-input" accept="image/*">
+    
 
     <div class="container">
         <div class="date" id="date-box"></div>
@@ -119,26 +108,9 @@
         updateClock();
         setInterval(updateClock, 1000);
 
-        // --- 2. Local Gallery Upload Engine ---
-        const trigger = document.getElementById('upload-trigger');
-        const fileInput = document.getElementById('gallery-input');
-
-        // When you tap the screen background, trigger your device's photo gallery file selector
-        trigger.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        // Convert selected device photo file into a temporary local URL web path and set it as body background
-        fileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.body.style.backgroundImage = `url('${e.target.result}')`;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
+        
+            
+    
     </script>
 </body>
 </html>
